@@ -10,6 +10,11 @@ from pathlib import Path
 import sys
 
 
+# Display limits for results
+MAX_DISPLAY_ITEMS = 50
+MAX_DISPLAY_MATCHES = 30
+
+
 def perform_comparison(left_file, left_sheet, left_col, right_file, right_sheet, right_col, output_file=None):
     """
     Perform Excel comparison from command line
@@ -80,30 +85,30 @@ def perform_comparison(left_file, left_sheet, left_col, right_file, right_sheet,
             print("-" * 80)
             print(f"VALUES ONLY IN LEFT FILE ({len(only_in_left)} items)")
             print("-" * 80)
-            for i, value in enumerate(sorted(only_in_left)[:50], 1):
+            for i, value in enumerate(sorted(only_in_left)[:MAX_DISPLAY_ITEMS], 1):
                 print(f"{i}. {value}")
-            if len(only_in_left) > 50:
-                print(f"... and {len(only_in_left) - 50} more")
+            if len(only_in_left) > MAX_DISPLAY_ITEMS:
+                print(f"... and {len(only_in_left) - MAX_DISPLAY_ITEMS} more")
             print()
         
         if only_in_right:
             print("-" * 80)
             print(f"VALUES ONLY IN RIGHT FILE ({len(only_in_right)} items)")
             print("-" * 80)
-            for i, value in enumerate(sorted(only_in_right)[:50], 1):
+            for i, value in enumerate(sorted(only_in_right)[:MAX_DISPLAY_ITEMS], 1):
                 print(f"{i}. {value}")
-            if len(only_in_right) > 50:
-                print(f"... and {len(only_in_right) - 50} more")
+            if len(only_in_right) > MAX_DISPLAY_ITEMS:
+                print(f"... and {len(only_in_right) - MAX_DISPLAY_ITEMS} more")
             print()
         
         if matches:
             print("-" * 80)
-            print(f"MATCHING VALUES (showing first 30 of {len(matches)})")
+            print(f"MATCHING VALUES (showing first {MAX_DISPLAY_MATCHES} of {len(matches)})")
             print("-" * 80)
-            for i, value in enumerate(sorted(matches)[:30], 1):
+            for i, value in enumerate(sorted(matches)[:MAX_DISPLAY_MATCHES], 1):
                 print(f"{i}. {value}")
-            if len(matches) > 30:
-                print(f"... and {len(matches) - 30} more")
+            if len(matches) > MAX_DISPLAY_MATCHES:
+                print(f"... and {len(matches) - MAX_DISPLAY_MATCHES} more")
             print()
         
         print("=" * 80)
