@@ -311,6 +311,20 @@ class ExcelLookupGUI:
             right_cols = [right_key_col] + [col for col in right_additional 
                                             if col != right_key_col]
             
+            # Validate columns exist
+            invalid_left = [col for col in left_cols if col not in self.left_df.columns]
+            invalid_right = [col for col in right_cols if col not in self.right_df.columns]
+            
+            if invalid_left:
+                messagebox.showerror("Error", 
+                    f"Invalid left columns: {', '.join(invalid_left)}")
+                return
+            
+            if invalid_right:
+                messagebox.showerror("Error", 
+                    f"Invalid right columns: {', '.join(invalid_right)}")
+                return
+            
             # Create subsets
             left_subset = self.left_df[left_cols].copy()
             right_subset = self.right_df[right_cols].copy()
@@ -406,11 +420,14 @@ class ExcelLookupGUI:
                 red_fill = PatternFill(start_color='FFB6C1', end_color='FFB6C1', 
                                       fill_type='solid')
                 
+                # Pre-extract match status for performance
+                match_statuses = self.result_df['Match_Status'].tolist()
+                
                 # Apply formatting
                 for row_idx, row in enumerate(worksheet.iter_rows(min_row=2, 
                                                                   max_row=len(self.result_df) + 1), 
                                              start=2):
-                    status = self.result_df.iloc[row_idx - 2]['Match_Status']
+                    status = match_statuses[row_idx - 2]
                     
                     for cell in row:
                         if status == 'Match':
@@ -426,7 +443,7 @@ class ExcelLookupGUI:
                         try:
                             if len(str(cell.value)) > max_length:
                                 max_length = len(str(cell.value))
-                        except:
+                        except (TypeError, AttributeError):
                             pass
                     adjusted_width = min(max_length + 2, 50)
                     worksheet.column_dimensions[column_letter].width = adjusted_width

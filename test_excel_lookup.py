@@ -5,6 +5,7 @@ Tests the core comparison logic without GUI interaction
 
 import pandas as pd
 import os
+import traceback
 from datetime import datetime
 
 
@@ -134,6 +135,5 @@ if __name__ == "__main__":
         test_comparison_logic()
     except Exception as e:
         print(f"\n✗ TEST FAILED: {str(e)}")
-        import traceback
         traceback.print_exc()
         exit(1)
