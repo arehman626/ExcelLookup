@@ -13,6 +13,10 @@ import traceback
 class ExcelLookupApp:
     """Main application class for Excel Lookup utility"""
     
+    # Display limits for results
+    MAX_DISPLAY_ITEMS = 100
+    MAX_DISPLAY_MATCHES = 50
+    
     def __init__(self, root):
         self.root = root
         self.root.title("Excel Lookup & Reconciliation Tool")
@@ -277,30 +281,30 @@ class ExcelLookupApp:
             results.append("-" * 80)
             results.append(f"VALUES ONLY IN LEFT FILE ({len(only_in_left)} items)")
             results.append("-" * 80)
-            for i, value in enumerate(sorted(only_in_left)[:100], 1):
+            for i, value in enumerate(sorted(only_in_left)[:self.MAX_DISPLAY_ITEMS], 1):
                 results.append(f"{i}. {value}")
-            if len(only_in_left) > 100:
-                results.append(f"... and {len(only_in_left) - 100} more")
+            if len(only_in_left) > self.MAX_DISPLAY_ITEMS:
+                results.append(f"... and {len(only_in_left) - self.MAX_DISPLAY_ITEMS} more")
             results.append("")
             
         if only_in_right:
             results.append("-" * 80)
             results.append(f"VALUES ONLY IN RIGHT FILE ({len(only_in_right)} items)")
             results.append("-" * 80)
-            for i, value in enumerate(sorted(only_in_right)[:100], 1):
+            for i, value in enumerate(sorted(only_in_right)[:self.MAX_DISPLAY_ITEMS], 1):
                 results.append(f"{i}. {value}")
-            if len(only_in_right) > 100:
-                results.append(f"... and {len(only_in_right) - 100} more")
+            if len(only_in_right) > self.MAX_DISPLAY_ITEMS:
+                results.append(f"... and {len(only_in_right) - self.MAX_DISPLAY_ITEMS} more")
             results.append("")
             
         if matches:
             results.append("-" * 80)
-            results.append(f"MATCHING VALUES (showing first 50 of {len(matches)})")
+            results.append(f"MATCHING VALUES (showing first {self.MAX_DISPLAY_MATCHES} of {len(matches)})")
             results.append("-" * 80)
-            for i, value in enumerate(sorted(matches)[:50], 1):
+            for i, value in enumerate(sorted(matches)[:self.MAX_DISPLAY_MATCHES], 1):
                 results.append(f"{i}. {value}")
-            if len(matches) > 50:
-                results.append(f"... and {len(matches) - 50} more")
+            if len(matches) > self.MAX_DISPLAY_MATCHES:
+                results.append(f"... and {len(matches) - self.MAX_DISPLAY_MATCHES} more")
             results.append("")
         
         results.append("=" * 80)
