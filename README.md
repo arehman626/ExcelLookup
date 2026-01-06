@@ -30,9 +30,29 @@ pip install -r requirements.txt
 
 ## Usage
 
-Run the application:
+### GUI Mode (Recommended)
+
+Run the graphical application:
 ```bash
 python excel_lookup.py
+```
+
+### Command Line Mode
+
+For batch processing or environments without GUI support:
+
+```bash
+# List sheets in a file
+python excel_lookup_cli.py list-sheets file.xlsx
+
+# List columns in a sheet
+python excel_lookup_cli.py list-columns file.xlsx SheetName
+
+# Compare two files
+python excel_lookup_cli.py compare \
+  --left-file data1.xlsx --left-sheet Sheet1 --left-col ID \
+  --right-file data2.xlsx --right-sheet Sheet2 --right-col Code \
+  --output results.xlsx
 ```
 
 ### Step-by-Step Guide
@@ -63,6 +83,16 @@ python excel_lookup.py
 - pandas >= 2.0.0
 - openpyxl >= 3.0.0
 - tkinter (usually included with Python)
+
+## Repository Structure
+
+- `excel_lookup.py` - Main GUI application
+- `excel_lookup_cli.py` - Command-line interface
+- `create_sample_data.py` - Generate sample Excel files for testing
+- `test_functionality.py` - Automated tests for core functionality
+- `requirements.txt` - Python dependencies
+- `QUICKSTART.md` - Detailed usage guide with examples
+- `README.md` - This file
 
 ## Use Cases
 
