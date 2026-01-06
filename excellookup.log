@@ -1,0 +1,8 @@
+2026-01-06 14:38:16,522 - __main__ - INFO - Starting comparison between examples\\sample_file1.xlsx and examples\\sample_file2.xlsx
+2026-01-06 14:38:16,548 - excel_lookup.core.comparator - INFO - Starting comparison between sample_file1 and sample_file2
+2026-01-06 14:38:16,577 - excel_lookup.core.comparator - INFO - Comparison completed. Found 4 matches, 8 differences
+2026-01-06 14:38:47,560 - __main__ - INFO - Starting comparison between examples\\sample_file1.xlsx and examples\\sample_file2.xlsx
+2026-01-06 14:38:47,586 - excel_lookup.core.comparator - INFO - Starting comparison between sample_file1 and sample_file2
+2026-01-06 14:38:47,620 - excel_lookup.core.comparator - INFO - Comparison completed. Found 4 matches, 8 differences
+2026-01-06 14:38:47,676 - excel_lookup.reports.generator - INFO - Report generated successfully: examples\cli_report.xlsx
+2026-01-06 14:40:25,501 - excel_lookup.core.file_handler - INFO - Validated file examples\\sample_file1.xlsx: {'rows': 5, 'columns': 6, 'column_names': ['ID', 'Name', 'Department', 'Salary', 'StartDate', 'LastUpdated'], 'has_duplicates': np.False_, 'empty_cells': np.int64(0)}

@@ -1,0 +1,16 @@
+{
+  "input_dir": "./input",
+  "output_dir": "./output",
+  "temp_dir": "./temp",
+  "default_tolerance": 0.001,
+  "case_sensitive": false,
+  "ignore_whitespace": true,
+  "date_tolerance_days": 0,
+  "report_format": "xlsx",
+  "include_charts": true,
+  "max_differences": 1000,
+  "chunk_size": 10000,
+  "max_memory_usage": "1GB",
+  "log_level": "INFO",
+  "log_file": "excellookup.log"
+}
