@@ -1,0 +1,93 @@
+================================================================================
+                    EXCEL LOOKUP GUI - VISUAL LAYOUT
+================================================================================
+
+When you run the application with: python excel_lookup_gui.py
+
+The following GUI window will appear:
+
+┌─────────────────────────────────────────────────────────────────────────────┐
+│ Excel Lookup - Data Comparison Tool                                  [_][□][X]│
+├─────────────────────────────────────────────────────────────────────────────┤
+│                                                                             │
+│                   Excel Data Comparison Tool                                │
+│                                                                             │
+├────────────────────────────────────┬────────────────────────────────────────┤
+│                                    │                                        │
+│  ┌─ Left File (Source) ─────────┐ │ ┌─ Right File (Compare) ─────────┐   │
+│  │                               │ │ │                                 │   │
+│  │ File: test_left.xlsx          │ │ │ File: test_right.xlsx           │   │
+│  │ [Browse...]                   │ │ │ [Browse...]                     │   │
+│  │                               │ │ │                                 │   │
+│  │ Sheet: [Employees        ▼]   │ │ │ Sheet: [Employees        ▼]     │   │
+│  │                               │ │ │                                 │   │
+│  │ Rows: 5, Columns: 4           │ │ │ Rows: 5, Columns: 4             │   │
+│  └───────────────────────────────┘ │ └─────────────────────────────────┘   │
+│                                    │                                        │
+├────────────────────────────────────┴────────────────────────────────────────┤
+│                                                                             │
+│  ┌─ Column Selection for Comparison ───────────────────────────────────┐   │
+│  │                                                                      │   │
+│  │  Left Column: [ID            ▼]    Right Column: [ID            ▼]  │   │
+│  │                                                                      │   │
+│  │  Additional Left Columns:          Additional Right Columns:        │   │
+│  │  ┌────────────────────────┐        ┌────────────────────────┐      │   │
+│  │  │ Name                   │        │ Name                   │      │   │
+│  │  │ Department             │        │ Location               │      │   │
+│  │  │ Salary                 │        │ Status                 │      │   │
+│  │  │                        │        │                        │      │   │
+│  │  └────────────────────────┘        └────────────────────────┘      │   │
+│  │                                                                      │   │
+│  └──────────────────────────────────────────────────────────────────────┘   │
+│                                                                             │
+│              [Compare Data]  [Save Results]  [Reset]                        │
+│                                                                             │
+├─────────────────────────────────────────────────────────────────────────────┤
+│ Status: Comparison complete: 3 matches, 2 left only, 2 right only          │
+└─────────────────────────────────────────────────────────────────────────────┘
+
+                           APPLICATION IN ACTION
+
+Step 1: Files Loaded
+   ✓ Left file selected: test_left.xlsx (5 rows, 4 columns)
+   ✓ Right file selected: test_right.xlsx (5 rows, 4 columns)
+
+Step 2: Sheets Selected
+   ✓ Both files: "Employees" sheet selected
+
+Step 3: Columns Selected
+   ✓ Key columns: ID (both sides)
+   ✓ Additional: Name, Department, Salary (left)
+   ✓ Additional: Name, Location, Status (right)
+
+Step 4: Comparison Performed
+   ✓ [Compare Data] button clicked
+   ✓ Results: 3 matches, 2 left only, 2 right only
+
+Step 5: Results Saved
+   ✓ [Save Results] button clicked
+   ✓ File saved: Comparison_test_left_vs_test_right_20260106_191021.xlsx
+
+OUTPUT FILE APPEARANCE (when opened in Excel):
+
+┌────────────────────────────────────────────────────────────────────────────┐
+│ Comparison_test_left_vs_test_right_20260106_191021.xlsx                   │
+├────────────────────────────────────────────────────────────────────────────┤
+│                                                                            │
+│ Key   │ Left_   │ Left_      │ Left_   │ Right_ │ Right_   │ Right_│Match │
+│ (ID)  │ Name    │ Department │ Salary  │ Name   │ Location │ Status│Status│
+├───────┼─────────┼────────────┼─────────┼────────┼──────────┼───────┼──────┤
+│ 1     │ Alice   │ Sales      │ 50000   │ Alice  │ NY       │ Active│Match │ GREEN
+│ 2     │ Bob     │ IT         │ 60000   │ Bob    │ LA       │ Active│Match │ GREEN
+│ 3     │ Charlie │ HR         │ 55000   │ Charlie│ Chicago  │Inactiv│Match │ GREEN
+│ 4     │ David   │ Sales      │ 52000   │        │          │       │Left  │ RED
+│ 5     │ Eve     │ IT         │ 58000   │        │          │       │Left  │ RED
+│ 6     │         │            │         │ Frank  │ Boston   │ Active│Right │ RED
+│ 7     │         │            │         │ Grace  │ Seattle  │ Active│Right │ RED
+└───────┴─────────┴────────────┴─────────┴────────┴──────────┴───────┴──────┘
+
+Legend:
+  🟢 GREEN background = Records found in BOTH files (Matched)
+  🔴 RED background   = Records found in ONLY ONE file (Not matched)
+
+================================================================================
